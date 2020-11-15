@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * 仓库信息管理 service
  *
- * @author Ken
+ * @author haochencheng
  */
 public interface RepositoryService {
 

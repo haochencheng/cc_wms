@@ -5,7 +5,7 @@
 
 <mapper namespace="com.ken.wms.dao.RolePermissionMapper">
 
-    <resultMap id="rolePermission" type="com.ken.wms.domain.RolePermissionDO">
+    <resultMap id="rolePermission" type="com.ken.wms.domain.vo.RolePermissionDO">
         <result property="name" column="ACTION_NAME"/>
         <result property="url" column="ACTION_PARAM"/>
         <result property="role" column="ROLE_NAME"/>

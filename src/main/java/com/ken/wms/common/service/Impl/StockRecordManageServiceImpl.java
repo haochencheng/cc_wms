@@ -6,6 +6,7 @@ import com.ken.wms.common.service.Interface.StockRecordManageService;
 import com.ken.wms.common.service.Interface.StorageManageService;
 import com.ken.wms.dao.*;
 import com.ken.wms.domain.*;
+import com.ken.wms.domain.vo.StockRecordDTO;
 import com.ken.wms.exception.StockRecordManageServiceException;
 import com.ken.wms.exception.StorageManageServiceException;
 import com.ken.wms.util.aop.UserOperation;

@@ -3,7 +3,7 @@ package com.ken.wms.security.realms;
 import com.ken.wms.common.service.Interface.RepositoryAdminManageService;
 import com.ken.wms.common.service.Interface.SystemLogService;
 import com.ken.wms.domain.RepositoryAdmin;
-import com.ken.wms.domain.UserInfoDTO;
+import com.ken.wms.domain.vo.UserInfoDTO;
 import com.ken.wms.exception.RepositoryAdminManageServiceException;
 import com.ken.wms.exception.UserInfoServiceException;
 import com.ken.wms.security.service.Interface.UserInfoService;
@@ -27,8 +27,7 @@ import java.util.Set;
 /**
  * 用户的认证与授权
  *
- * @author ken
- * @since 2017/2/26.
+ * @author haochencheng
  */
 public class UserAuthorizingRealm extends AuthorizingRealm {
 
@@ -54,19 +53,16 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
         Set<String> roles = new HashSet<>();
 
         //获取用户角色
-        Object principal = principalCollection.getPrimaryPrincipal();
-        if (principal instanceof String) {
-            String userID = (String) principal;
-            if (StringUtils.isNumeric(userID)) {
-                try {
-                    UserInfoDTO userInfo = userInfoService.getUserInfo(Integer.valueOf(userID));
-                    if (userInfo != null) {
-                        // 设置用户角色
-                        roles.addAll(userInfo.getRole());
-                    }
-                } catch (UserInfoServiceException e) {
-                    // do logger
+        String userName = (String) principalCollection.getPrimaryPrincipal();
+        if (userName instanceof String) {
+            try {
+                UserInfoDTO userInfo = userInfoService.getUserInfo(userName);
+                if (userInfo != null) {
+                    // 设置用户角色
+                    roles.addAll(userInfo.getRole());
                 }
+            } catch (UserInfoServiceException e) {
+                // do logger
             }
         }
 
@@ -96,21 +92,18 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
         // 获取用户名对应的用户账户信息
         try {
             UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
-            String principal = usernamePasswordToken.getUsername();
+            String userName = usernamePasswordToken.getUsername();
 
-            if (!StringUtils.isNumeric(principal))
-                throw new AuthenticationException();
-            Integer userID = Integer.valueOf(principal);
             //依赖于/security.service.Interface.UserInfoService,UserInfoDTO中包含用户ID,用户名，密码，角色
             //wms_user表
-            UserInfoDTO userInfoDTO = userInfoService.getUserInfo(userID);
+            UserInfoDTO userInfoDTO = userInfoService.getUserInfo(userName);
 
             if (userInfoDTO != null) {
                 Subject currentSubject = SecurityUtils.getSubject();
                 Session session = currentSubject.getSession();
 
                 // 设置部分用户信息到 Session
-                session.setAttribute("userID", userID);
+                session.setAttribute("userID", userInfoDTO.getUserID());
                 session.setAttribute("userName", userInfoDTO.getUserName());
                 //获取该用户的所属仓库
                 List<RepositoryAdmin> repositoryAdmin = (List<RepositoryAdmin>) repositoryAdminManageService.selectByID(userInfoDTO.getUserID()).get("data");
@@ -126,10 +119,10 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
                 }
             }
             //比对账号密码
-            //principal前端传来userid
+            //principal前端传来 userName
             //credentials为数据库的密码，加chexkcode的MD5加密
             //realmName为com.ken.wms.security.realms.UserAuthorizingRealm_0
-            return new SimpleAuthenticationInfo(principal, credentials, realmName);
+            return new SimpleAuthenticationInfo(userName, credentials, realmName);
 
         } catch (UserInfoServiceException | RepositoryAdminManageServiceException | NoSuchAlgorithmException e) {
             throw new AuthenticationException();

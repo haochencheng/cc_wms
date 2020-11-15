@@ -1,7 +1,7 @@
 package com.ken.wms.security.service;
 
 import com.ken.wms.dao.RolePermissionMapper;
-import com.ken.wms.domain.RolePermissionDO;
+import com.ken.wms.domain.vo.RolePermissionDO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.LinkedHashMap;
@@ -9,8 +9,7 @@ import java.util.List;
 
 /**
  * 获取 URL 权限信息工厂类
- * @author ken
- * @since 2017/2/26.
+ * @author haochencheng
  */
 public class FilterChainDefinitionMapBuilder {
     @Autowired

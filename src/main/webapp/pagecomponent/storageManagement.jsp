@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <script>
-	var search_type_storage = "none";
+	var search_type_storage = "searchAll";
 	var search_keyWord = "";
 	var search_repository = "";
 	var select_goodsID;
@@ -14,7 +14,8 @@
 		storageListInit();
 		bootstrapValidatorInit();
 		repositoryOptionInit();
-
+		$("#search_input_type").attr("readOnly", "true");
+		// goodsOptionInit();
 		addStorageAction();
 		editStorageAction();
 		deleteStorageAction();
@@ -48,6 +49,30 @@
 		})
 	}
 
+	// 货物下拉框数据初始化，页面加载时完成
+	function goodsOptionInit(){
+		$.ajax({
+			type : 'GET',
+			url : 'goodsManage/getGoodsList',
+			dataType : 'json',
+			contentType : 'application/json',
+			data:{
+				searchType : "searchAll",
+				keyWord : "",
+				offset : -1,
+				limit : -1
+			},
+			success : function(response){
+				//组装option
+				$.each(response.rows,function(index,elem){
+					$('#search_input_type').append("<option value='" + elem.id + "'>" + elem.name +"</option>");
+				})
+			},
+			error : function(response){
+			}
+		});
+	}
+
 	// 仓库下拉框数据初始化，页面加载时完成
 	function repositoryOptionInit(){
 		$.ajax({
@@ -70,7 +95,7 @@
 			error : function(response){
 			}
 		});
-		$('#search_input_repository').append("<option value='all'>请选择仓库</option>");
+		$('#search_input_repository').append("<option value='all'>所有仓库</option>");
 	}
 
 	// 搜索动作
@@ -517,13 +542,13 @@
 				<div class="btn-group">
 					<button class="btn btn-default dropdown-toggle"
 						data-toggle="dropdown">
-						<span id="search_type">查询方式</span> <span class="caret"></span>
+						<span id="search_type">所有</span> <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
+						<li><a href="javascript:void(0)" class="dropOption">所有</a></li>
 						<li><a href="javascript:void(0)" class="dropOption">货物ID</a></li>
 						<li><a href="javascript:void(0)" class="dropOption">货物名称</a></li>
 						<li><a href="javascript:void(0)" class="dropOption">货物类型</a></li>
-						<li><a href="javascript:void(0)" class="dropOption">所有</a></li>
 					</ul>
 				</div>
 			</div>
@@ -533,6 +558,11 @@
 						<input id="search_input_type" type="text" class="form-control"
 							placeholder="货物ID">
 					</div>
+					<!--通过后台查询货物信息-->
+<%--					<div class="col-md-3 col-sm-4">--%>
+<%--						<select class="form-control" id="search_input_type">--%>
+<%--						</select>--%>
+<%--					</div>--%>
 					<!--通过后台查询仓库信息-->
 					<div class="col-md-3 col-sm-4">
 						<select class="form-control" id="search_input_repository">
@@ -552,9 +582,9 @@
 				<button class="btn btn-sm btn-default" id="add_storage">
 					<span class="glyphicon glyphicon-plus"></span> <span>添加库存信息</span>
 				</button>
-				<button class="btn btn-sm btn-default" id="import_storage">
-					<span class="glyphicon glyphicon-import"></span> <span>导入</span>
-				</button>
+<%--				<button class="btn btn-sm btn-default" id="import_storage">--%>
+<%--					<span class="glyphicon glyphicon-import"></span> <span>导入</span>--%>
+<%--				</button>--%>
 				<button class="btn btn-sm btn-default" id="export_storage">
 					<span class="glyphicon glyphicon-export"></span> <span>导出</span>
 				</button>

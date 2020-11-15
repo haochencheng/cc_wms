@@ -1,7 +1,7 @@
 package com.ken.wms.security.service.Impl;
 
 
-import com.ken.wms.domain.UserInfoDTO;
+import com.ken.wms.domain.vo.UserInfoDTO;
 import com.ken.wms.exception.UserAccountServiceException;
 import com.ken.wms.exception.UserInfoServiceException;
 import com.ken.wms.security.service.Interface.AccountService;
@@ -16,8 +16,7 @@ import java.util.Map;
 /**
  * 账户Service
  *
- * @author Ken
- * @since 2017-3-1
+ * @author haochencheng
  */
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -62,12 +61,13 @@ public class AccountServiceImpl implements AccountService {
 
             // 原密码正确性验证
             String password;
-            password = encryptingModel.MD5(oldPassword + userID);
+            String userName = user.getUserName();
+            password = encryptingModel.MD5(oldPassword + userName);
             if (!password.equals(user.getPassword()))
                 throw new UserAccountServiceException(UserAccountServiceException.PASSWORD_ERROR);
 
             // 获得新的密码并加密
-            password = encryptingModel.MD5(newPassword + userID);
+            password = encryptingModel.MD5(newPassword + userName);
 
             // 验证成功后更新数据库
             user.setPassword(password);

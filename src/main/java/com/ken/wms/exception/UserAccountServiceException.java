@@ -3,8 +3,7 @@ package com.ken.wms.exception;
 /**
  * AccountServiceException异常
  *
- * @author Ken
- * @since 2017/3/8.
+ * @author haochencheng
  */
 public class UserAccountServiceException extends BusinessException {
 

@@ -13,7 +13,6 @@ $(function(){
 	repositorySelectorInit();
 	dataValidateInit();
 	detilInfoToggle();
-
 	stockInOption();
 	fetchStorage();
 	supplierAutocomplete();

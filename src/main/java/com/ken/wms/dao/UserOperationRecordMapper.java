@@ -1,6 +1,6 @@
 package com.ken.wms.dao;
 
-import com.ken.wms.domain.UserOperationRecordDO;
+import com.ken.wms.domain.vo.UserOperationRecordDO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -10,8 +10,7 @@ import java.util.List;
 /**
  * 用户操作记录Mapper
  *
- * @author Ken
- * @since 2017/4/9.
+ * @author haochencheng
  */
 @Repository
 public interface UserOperationRecordMapper {

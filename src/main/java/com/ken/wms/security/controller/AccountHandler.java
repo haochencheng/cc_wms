@@ -31,8 +31,7 @@ import java.util.Map;
 /**
  * 用户账户请求 Handler
  *
- * @author Ken
- * @since 017/2/26.
+ * @author haochencheng
  */
 @Controller
 @RequestMapping("/account")

@@ -32,10 +32,10 @@
 						<form id="login_form" class="form-horizontal" style="">
 
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4">用户ID：</label>
+								<label class="control-label col-md-4 col-sm-4">用户名：</label>
 								<div class="col-md-7 col-sm-7">
 									<input type="text" id="userID" class="form-control"
-										placeholder="用户ID" name="userID" />
+										placeholder="用户名" name="userID" />
 								</div>
 							</div>
 
@@ -125,10 +125,7 @@
 						validators : {
 							notEmpty : {
 								message : '用户名不能为空'
-							},regexp: {
-		                        regexp: '[0-9]+',
-		                        message: '只允许输入数字'
-		                    },
+							},
 							callback : {}
 						}
 					},

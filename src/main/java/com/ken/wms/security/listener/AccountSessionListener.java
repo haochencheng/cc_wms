@@ -1,8 +1,6 @@
 package com.ken.wms.security.listener;
 
 import com.ken.wms.common.service.Interface.SystemLogService;
-import com.ken.wms.dao.AccessRecordMapper;
-import com.ken.wms.domain.AccessRecordDO;
 import com.ken.wms.exception.SystemLogServiceException;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +12,12 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-import java.util.Date;
 
 /**
  * 用户Session监听器
  * 当用户session注销时，记录用户账户登出的时间
  *
- * @author Ken
- * @since 2017/3/4.
+ * @author haochencheng
  */
 @Component
 public class AccountSessionListener implements HttpSessionListener, ApplicationContextAware{

@@ -3,11 +3,12 @@ package com.ken.wms.common.controller;
 import com.ken.wms.common.service.Interface.StockRecordManageService;
 import com.ken.wms.common.util.Response;
 import com.ken.wms.common.util.ResponseUtil;
-import com.ken.wms.domain.StockRecordDTO;
+import com.ken.wms.domain.vo.StockRecordDTO;
 import com.ken.wms.exception.StockRecordManageServiceException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,15 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 商品出入库管理请求Handler
  *
- * @author Ken
- * @since 017/4/5.
+ * @author haochencheng
  */
 @Controller
 @RequestMapping(value = "stockRecordManage")
@@ -143,7 +142,7 @@ public class StockRecordManageHandler {
 
         if (rows == null)
             rows = new ArrayList<>(0);
-
+        Collections.sort(rows);
         responseContent.setCustomerInfo("rows", rows);
         responseContent.setResponseTotal(total);
         return responseContent.generateResponse();

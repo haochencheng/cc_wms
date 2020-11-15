@@ -4,8 +4,8 @@ import com.ken.wms.dao.RolesMapper;
 import com.ken.wms.dao.UserInfoMapper;
 import com.ken.wms.dao.UserPermissionMapper;
 import com.ken.wms.domain.RoleDO;
-import com.ken.wms.domain.UserInfoDO;
-import com.ken.wms.domain.UserInfoDTO;
+import com.ken.wms.domain.vo.UserInfoDO;
+import com.ken.wms.domain.vo.UserInfoDTO;
 import com.ken.wms.exception.UserInfoServiceException;
 import com.ken.wms.security.service.Interface.UserInfoService;
 import com.ken.wms.security.util.EncryptingModel;
@@ -22,8 +22,7 @@ import java.util.Set;
 /**
  * 用户账户信息 service 实现类
  *
- * @author ken
- * @since 2017/2/26.
+ * @author haochencheng
  */
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
@@ -189,7 +188,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         try {
             // 对密码进行加密
             String tempStr = encryptingModel.MD5(password);
-            String encryptPassword = encryptingModel.MD5(tempStr + userID.toString());
+            String encryptPassword = encryptingModel.MD5(tempStr + userName);
 
             // 创建用户信息数据实体
             UserInfoDO userInfoDO = new UserInfoDO();
@@ -207,10 +206,11 @@ public class UserInfoServiceImpl implements UserInfoService {
             // 持久化用户角色信息
             for (String role : roles) {
                 roleID = rolesMapper.getRoleID(role);
-                if (roleID != null)
+                if (roleID != null) {
                     userPermissionMapper.insert(userID, roleID);
-                else
+                } else {
                     throw new UserInfoServiceException("The role of userInfo unavailable");
+                }
             }
 
             return true;

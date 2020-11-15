@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * 货物信息管理Service 实现类
  *
- * @author Ken
+ * @author haochencheng
  */
 @Service
 public class GoodsManageServiceImpl implements GoodsManageService {

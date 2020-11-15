@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <script>
-	var search_type_supplier = "none";
+	var search_type_supplier = "searchAll";
 	var search_keyWord = "";
 	var selectID;
 
@@ -504,12 +504,12 @@
 				<div class="btn-group">
 					<button class="btn btn-default dropdown-toggle"
 						data-toggle="dropdown">
-						<span id="search_type">查询方式</span> <span class="caret"></span>
+						<span id="search_type">所有</span> <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
+						<li><a href="javascript:void(0)" class="dropOption">所有</a></li>
 						<li><a href="javascript:void(0)" class="dropOption">供应商ID</a></li>
 						<li><a href="javascript:void(0)" class="dropOption">供应商名称</a></li>
-						<li><a href="javascript:void(0)" class="dropOption">所有</a></li>
 					</ul>
 				</div>
 			</div>

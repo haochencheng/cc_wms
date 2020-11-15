@@ -6,7 +6,7 @@ import com.ken.wms.common.service.Interface.RepositoryAdminManageService;
 import com.ken.wms.common.util.ExcelUtil;
 import com.ken.wms.dao.RepositoryAdminMapper;
 import com.ken.wms.domain.RepositoryAdmin;
-import com.ken.wms.domain.UserInfoDTO;
+import com.ken.wms.domain.vo.UserInfoDTO;
 import com.ken.wms.exception.RepositoryAdminManageServiceException;
 import com.ken.wms.exception.UserInfoServiceException;
 import com.ken.wms.security.service.Interface.UserInfoService;
@@ -22,7 +22,7 @@ import java.util.*;
 /**
  * 仓库管理员管理 service 实现类
  *
- * @author Ken
+ * @author haochencheng
  */
 @Service
 public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageService {
@@ -198,7 +198,7 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
                     UserInfoDTO userInfo = new UserInfoDTO();
                     userInfo.setUserID(userID);
                     userInfo.setUserName(repositoryAdmin.getName());
-                    userInfo.setPassword(repositoryAdmin.getId().toString());
+                    userInfo.setPassword("123456");
                     userInfo.setRole(new ArrayList<>(Collections.singletonList("commonsAdmin")));
 
                     // 添加新创建的仓库管理员账户信息
@@ -331,9 +331,21 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
             try {
                 // 保存到数据库
                 available = availableList.size();
-                if (available > 0)
+                if (available > 0) {
                     repositoryAdminMapper.insertBatch(availableList);
+                    for (RepositoryAdmin admin : availableList) {
+                        // 为仓库管理员创建账户
+                        UserInfoDTO userInfo = new UserInfoDTO();
+                        userInfo.setUserName(admin.getName());
+                        userInfo.setPassword("123456");
+                        userInfo.setRole(new ArrayList<>(Collections.singletonList("commonsAdmin")));
+                        // 添加新创建的仓库管理员账户信息
+                        userInfoService.insertUserInfo(userInfo);
+                    }
+                }
             } catch (PersistenceException e) {
+                throw new RepositoryAdminManageServiceException(e);
+            } catch (UserInfoServiceException e) {
                 throw new RepositoryAdminManageServiceException(e);
             }
         }

@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * 库存管理请求处理
  *
- * @author Ken
+ * @author haochencheng
  */
 @Controller
 @RequestMapping(value = "/**/storageManage")
@@ -65,7 +65,7 @@ public class StorageManageHandler {
                     Integer repositoryID = Integer.valueOf(repositoryBelong);
                     queryResult = storageManageService.selectAll(repositoryID, offset, limit);
                 } else {
-                    queryResult = storageManageService.selectAll(null, offset, limit);
+                    queryResult = storageManageService.selectAll(0, offset, limit);
                 }
                 break;
             case SEARCH_BY_GOODS_ID:
@@ -75,7 +75,7 @@ public class StorageManageHandler {
                         Integer repositoryID = Integer.valueOf(repositoryBelong);
                         queryResult = storageManageService.selectByGoodsID(goodsID, repositoryID, offset, limit);
                     } else
-                        queryResult = storageManageService.selectByGoodsID(goodsID, null, offset, limit);
+                        queryResult = storageManageService.selectByGoodsID(goodsID, 0, offset, limit);
                 }
                 break;
             case SEARCH_BY_GOODS_TYPE:
@@ -83,14 +83,14 @@ public class StorageManageHandler {
                     Integer repositoryID = Integer.valueOf(repositoryBelong);
                     queryResult = storageManageService.selectByGoodsType(keyword, repositoryID, offset, limit);
                 } else
-                    queryResult = storageManageService.selectByGoodsType(keyword, null, offset, limit);
+                    queryResult = storageManageService.selectByGoodsType(keyword, 0, offset, limit);
                 break;
             case SEARCH_BY_GOODS_NAME:
                 if (StringUtils.isNumeric(repositoryBelong)) {
                     Integer repositoryID = Integer.valueOf(repositoryBelong);
                     queryResult = storageManageService.selectByGoodsName(keyword, repositoryID, offset, limit);
                 } else
-                    queryResult = storageManageService.selectByGoodsName(keyword, null, offset, limit);
+                    queryResult = storageManageService.selectByGoodsName(keyword, 0, offset, limit);
                 break;
             default:
                 // do other thing
@@ -162,7 +162,7 @@ public class StorageManageHandler {
 
         HttpSession session = request.getSession();
         Integer repositoryID = (Integer) session.getAttribute("repositoryBelong");
-        if (repositoryID != null) {
+        if (repositoryID != 0) {
             Map<String, Object> queryResult = query(searchType, keyword, repositoryID.toString(), offset, limit);
             if (queryResult != null) {
                 rows = (List<Storage>) queryResult.get("data");
@@ -332,12 +332,6 @@ public class StorageManageHandler {
                                     @RequestParam(value = "repositoryBelong", required = false) String repositoryBelong,
                                     HttpServletRequest request, HttpServletResponse response) throws StorageManageServiceException, IOException {
         String fileName = "storageRecord.xlsx";
-
-        HttpSession session = request.getSession();
-        Integer sessionRepositoryBelong = (Integer) session.getAttribute("repositoryBelong");
-        if (sessionRepositoryBelong != null && !sessionRepositoryBelong.equals("none"))
-            repositoryBelong = sessionRepositoryBelong.toString();
-
         List<Storage> storageList = null;
         Map<String, Object> queryResult = query(searchType, keyword, repositoryBelong, -1, -1);
         if (queryResult != null)

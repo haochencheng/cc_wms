@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * 供应商信息管理 service 实现类
  *
- * @author Ken
+ * @author haochencheng
  */
 @Service
 public class SupplierManageServiceImpl implements SupplierManageService {

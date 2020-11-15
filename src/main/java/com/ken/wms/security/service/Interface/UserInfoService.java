@@ -1,6 +1,6 @@
 package com.ken.wms.security.service.Interface;
 
-import com.ken.wms.domain.UserInfoDTO;
+import com.ken.wms.domain.vo.UserInfoDTO;
 import com.ken.wms.exception.UserInfoServiceException;
 
 import java.util.List;
@@ -8,8 +8,7 @@ import java.util.Set;
 
 /**
  * 用户账户信息 service
- * @author ken
- * @since 2017/2/26.
+ * @author haochencheng
  */
 public interface UserInfoService {
 

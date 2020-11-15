@@ -5,10 +5,10 @@ import com.github.pagehelper.PageInfo;
 import com.ken.wms.common.service.Interface.SystemLogService;
 import com.ken.wms.dao.AccessRecordMapper;
 import com.ken.wms.dao.UserOperationRecordMapper;
-import com.ken.wms.domain.AccessRecordDO;
-import com.ken.wms.domain.AccessRecordDTO;
-import com.ken.wms.domain.UserOperationRecordDO;
-import com.ken.wms.domain.UserOperationRecordDTO;
+import com.ken.wms.domain.vo.AccessRecordDO;
+import com.ken.wms.domain.vo.AccessRecordDTO;
+import com.ken.wms.domain.vo.UserOperationRecordDO;
+import com.ken.wms.domain.vo.UserOperationRecordDTO;
 import com.ken.wms.exception.SystemLogServiceException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.exceptions.PersistenceException;
@@ -23,8 +23,7 @@ import java.util.*;
 /**
  * 系统操作日志 Service 实现
  *
- * @author Ken
- * @since 2017/4/7.
+ * @author haochencheng
  */
 @Service
 public class SystemLogServiceImpl implements SystemLogService {

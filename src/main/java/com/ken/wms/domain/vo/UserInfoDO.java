@@ -1,10 +1,12 @@
-package com.ken.wms.domain;
+package com.ken.wms.domain.vo;
+
+import lombok.Data;
 
 /**
  * 用户账户信息(数据传输对象)
- * @author ken
- * @since 2017/2/26.
+ * @author haochencheng
  */
+@Data
 public class UserInfoDO {
 
     /**

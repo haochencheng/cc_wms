@@ -4,8 +4,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author Ken
- * @since 2017/3/1.
+ * @author haochencheng
  */
 @Repository
 public interface RolesMapper {

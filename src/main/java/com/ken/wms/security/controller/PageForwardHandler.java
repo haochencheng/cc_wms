@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 页面重定向
  *
- * @author ken
- * @since 2017/2/27.
+ * @author haochencheng
  */
 @RequestMapping("/")
 @Controller
@@ -24,10 +23,11 @@ public class PageForwardHandler {
     public String loginPageForward() {
         // 判断但钱用户是否已经登陆
         Subject currentSubject = SecurityUtils.getSubject();
-        if (!currentSubject.isAuthenticated())
+        if (!currentSubject.isAuthenticated()) {
             return "login";
-        else
+        } else {
             return "mainPage";
+        }
     }
 
     /**

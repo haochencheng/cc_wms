@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <script>
-	var search_type_repositoryAdmin = "none";
+	var search_type_repositoryAdmin = "searchAll";
 	var search_keyWord = "";
 	var selectID;
 
@@ -367,7 +367,7 @@
 					var type;
 					if (response.result == "success") {
 						type = "success";
-						msg = "仓库管理员添加成功<br><p>(注意：仓库管理员的系统初始密码为该ID)</p>";
+						msg = "仓库管理员添加成功<br><p>(注意：仓库管理员的系统初始密码为123456)</p>";
 					} else if (response.result == "error") {
 						type = "error";
 						msg = "仓库管理员添加失败";
@@ -559,13 +559,13 @@
 						<div class="btn-group">
 							<button class="btn btn-default dropdown-toggle"
 								data-toggle="dropdown">
-								<span id="search_type">查询方式</span> <span class="caret"></span>
+								<span id="search_type">所有</span> <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" role="menu">
+								<li><a href="javascript:void(0)" class="dropOption">所有</a></li>
 								<li><a href="javascript:void(0)" class="dropOption">仓库管理员ID</a></li>
 								<li><a href="javascript:void(0)" class="dropOption">仓库管理员姓名</a></li>
 								<li><a href="javascript:void(0)" class="dropOption">仓库ID</a></li>
-								<li><a href="javascript:void(0)" class="dropOption">所有</a></li>
 							</ul>
 						</div>
 					</div>
@@ -620,9 +620,9 @@
 				<button class="btn btn-sm btn-default" id="add_repositoryAdmin">
 					<span class="glyphicon glyphicon-plus"></span> <span>添加仓库管理员信息</span>
 				</button>
-				<button class="btn btn-sm btn-default" id="import_repositoryAdmin">
-					<span class="glyphicon glyphicon-import"></span> <span>导入</span>
-				</button>
+<%--				<button class="btn btn-sm btn-default" id="import_repositoryAdmin">--%>
+<%--					<span class="glyphicon glyphicon-import"></span> <span>导入</span>--%>
+<%--				</button>--%>
 				<button class="btn btn-sm btn-default" id="export_repositoryAdmin">
 					<span class="glyphicon glyphicon-export"></span> <span>导出</span>
 				</button>

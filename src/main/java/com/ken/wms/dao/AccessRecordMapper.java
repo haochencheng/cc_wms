@@ -1,6 +1,6 @@
 package com.ken.wms.dao;
 
-import com.ken.wms.domain.AccessRecordDO;
+import com.ken.wms.domain.vo.AccessRecordDO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -10,8 +10,7 @@ import java.util.List;
 /**
  * 用户登入登出记录因映射器
  *
- * @author Ken
- * @since 2017/3/5.
+ * @author haochencheng
  */
 @Repository
 public interface AccessRecordMapper {

@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * 加密模块
- * @author Ken
+ * @author haochencheng
  *
  */
 @Component

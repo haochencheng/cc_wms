@@ -12,7 +12,7 @@ import java.util.Random;
 
 /**
  * 图形验证码产生器
- * @author Ken
+ * @author haochencheng
  *
  */
 @Component

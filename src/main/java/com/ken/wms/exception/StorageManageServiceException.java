@@ -3,8 +3,7 @@ package com.ken.wms.exception;
 /**
  * StorageManageServiceException异常
  *
- * @author Ken
- * @since 2017/3/8.
+ * @author haochencheng
  */
 public class StorageManageServiceException extends BusinessException {
 

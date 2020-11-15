@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * 客户信息管理请求 Handler
  *
- * @author Ken
+ * @author haochencheng
  */
 @RequestMapping(value = "/**/customerManage")
 @Controller
@@ -39,7 +39,7 @@ public class CustomerManageHandler {
     private static final String SEARCH_ALL = "searchAll";
 
     /**
-     * 通用的结果查询方法
+     * 客户信息查询方法
      *
      * @param searchType 查询方式
      * @param keyWord    查询关键字

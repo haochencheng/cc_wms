@@ -1,43 +1,31 @@
 package com.ken.wms.domain;
 
+import lombok.Data;
+
 /**
  * 系统的使用用户
- * @author Ken
  *
+ * @author haochencheng
  */
+@Data
 public class User {
 
-	private Integer id;// 用户ID
-	private String userName;// 用户名
-	private String password;// 用户密码
+    /**
+     * 用户ID
+     */
+    private Integer id;
+    /**
+     * 登录名
+     */
+    private String nickName;
+    /**
+     * 用户名
+     */
+    private String userName;
+    /**
+     * 用户密码
+     */
+    private String password;
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", password=" + password + "]";
-	}
 
 }

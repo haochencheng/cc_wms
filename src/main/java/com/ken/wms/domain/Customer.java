@@ -1,71 +1,43 @@
 package com.ken.wms.domain;
 
+import lombok.Data;
+
 /**
  * 客户信息
- * @author Ken
+ * @author haochencheng
  *
  */
+@Data
 public class Customer {
 
-	private Integer id;// 客户ID
-	private String name;// 客户名
-	private String personInCharge;// 负责人
-	private String tel;// 联系电话
-	private String email;// 电子邮件
-	private String address;// 地址
+	/**
+	 * 客户ID
+	 */
+	private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
+	/**
+	 * 客户名
+	 */
+	private String name;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	/**
+	 * 负责人
+	 */
+	private String personInCharge;
 
-	public String getName() {
-		return name;
-	}
+	/**
+	 * 联系电话
+	 */
+	private String tel;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	/**
+	 * 电子邮件
+	 */
+	private String email;
 
-	public String getPersonInCharge() {
-		return personInCharge;
-	}
-
-	public void setPersonInCharge(String personInCharge) {
-		this.personInCharge = personInCharge;
-	}
-
-	public String getTel() {
-		return tel;
-	}
-
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	@Override
-	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + ", personInCharge=" + personInCharge + ", tel=" + tel
-				+ ", email=" + email + ", address=" + address + "]";
-	}
+	/**
+	 * 地址
+	 */
+	private String address;
 
 }

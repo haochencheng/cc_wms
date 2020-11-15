@@ -1,61 +1,38 @@
 package com.ken.wms.domain;
 
+import lombok.Data;
+
 /**
  * 货物信息
- * @author Ken
+ * @author haochencheng
  *
  */
+@Data
 public class Goods {
 
-	private Integer id;// 货物ID
-	private String name;// 货物名
-	private String type;// 货物类型
-	private String size;// 货物规格
-	private Double value;// 货物价值
+	/**
+	 * 货物ID
+	 */
+	private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
+	/**
+	 * 货物名
+	 */
+	private String name;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	/**
+	 * 货物类型
+	 */
+	private String type;
 
-	public String getName() {
-		return name;
-	}
+	/**
+	 * 货物规格
+	 */
+	private String size;
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
-	}
-
-	public Double getValue() {
-		return value;
-	}
-
-	public void setValue(Double value) {
-		this.value = value;
-	}
-
-	@Override
-	public String toString() {
-		return "Goods [id=" + id + ", name=" + name + ", type=" + type + ", size=" + size + ", value=" + value + "]";
-	}
+	/**
+	 * 货物价值
+	 */
+	private Double value;
 
 }

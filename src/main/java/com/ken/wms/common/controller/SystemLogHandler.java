@@ -3,8 +3,8 @@ package com.ken.wms.common.controller;
 import com.ken.wms.common.service.Interface.SystemLogService;
 import com.ken.wms.common.util.Response;
 import com.ken.wms.common.util.ResponseUtil;
-import com.ken.wms.domain.AccessRecordDO;
-import com.ken.wms.domain.UserOperationRecordDTO;
+import com.ken.wms.domain.vo.AccessRecordDO;
+import com.ken.wms.domain.vo.UserOperationRecordDTO;
 import com.ken.wms.exception.SystemLogServiceException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,7 @@ import java.util.Map;
 /**
  * 系统操作日志请求 Handler
  *
- * @author Ken
- * @since 2017/4/7.
+ * @author haochencheng
  */
 @Controller
 @RequestMapping(value = "/systemLog")
